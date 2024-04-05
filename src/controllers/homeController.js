@@ -1,3 +1,5 @@
+const HomeModel = require("../models/homeModel");
+
 /*
 HomeModel.find().then((dados) => {
     console.log(dados);
@@ -8,8 +10,8 @@ HomeModel.find().then((dados) => {
 
 /*
 HomeModel.create({
-    titulo: 'Flamengo',
-    descricao: 'Em busca do título carioca'
+    titulo: 'Augusto',
+    descricao: 'Augusto é contratado como desenvolcedor pela Lemobs'
 }).then((dados) => {
     console.log(dados);
 }).catch((err) => {
