@@ -19,10 +19,13 @@ const flash = require('connect-flash');
 
 const routes = require('./routes');
 const path = require('path');
-const { middlewareGlobal } = require('./src/middlewares/middlewares');
+const helmet = require('helmet');
+const csrf = require('csurf');
+const { middlewareGlobal, checkCsrfError, csrfMiddleware } = require('./src/middlewares/middlewares');
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.resolve(__dirname, 'public')));
+app.use(helmet());
 
 app.use(session({
   secret: 'foo',
@@ -39,8 +42,11 @@ app.use(flash());
 app.set('views', path.resolve(__dirname, 'src', 'views'));
 app.set('view engine', 'ejs');
 
-//rotas
+app.use(csrf());
+// Nossos próprios middlewares
 app.use(middlewareGlobal);
+app.use(checkCsrfError);
+app.use(csrfMiddleware);
 app.use(routes);
 
 app.on('pronto', () => {
