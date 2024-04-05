@@ -18,7 +18,10 @@ HomeModel.create({
 */
 
 exports.paginaInicial = (req, res) => {
-    res.render('index');
+    res.render('index', {
+        titulo: 'Um titulo qualquer',
+        numeros: [1, 2, 3, 4]
+    });
     return
 };
 

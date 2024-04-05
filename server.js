@@ -7,7 +7,7 @@ const app = express();
 const mongoose = require('mongoose');
 
 mongoose.connect(process.env.CONNECTION_STRING).then(() => {
-  console.log('conectado ao mongoDB')  
+  console.log('conectado ao mongoDB');
   app.emit('pronto');
 }).catch((e) => {
   console.log(e)
@@ -44,7 +44,7 @@ app.use(middlewareGlobal);
 app.use(routes);
 
 app.on('pronto', () => {
-  app.listen(undefined, () => {
+  app.listen(8999, () => {
     console.log('Acessar http://localhost:8999');
     console.log('Servidor executando na porta 8999');
   });
